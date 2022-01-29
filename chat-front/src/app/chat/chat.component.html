@@ -1,0 +1,45 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div fxFlex="80">
+    <mat-card class="box">
+      <form class="example-form" [formGroup]="messageFormGroup">
+        <mat-card-content>
+          <div *ngIf="toClientName?.value">
+            <app-message [clientName]="toClientName?.value"></app-message>
+          </div>
+          <div>
+            <mat-form-field style="width: 30%">
+              <input
+                matInput
+                [placeholder]="'Client name'"
+                formControlName="toClientName"
+              />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field style="width: 100%">
+              <input
+                matInput
+                [placeholder]="'Message'"
+                formControlName="message"
+              />
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field  style="width: 30%">
+              <mat-label>Default message type</mat-label>
+              <mat-select  formControlName="messageType">
+                <mat-option value="REST">REST</mat-option>
+                <mat-option value="HESSIAN">HESSIAN</mat-option>
+              </mat-select>
+              <mat-error *ngIf="messageType.hasError('required')">
+                Message type is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <button mat-button color="primary" [disabled]="!messageFormGroup.valid" (click)="sendMessage()" cdkFocusInitial>Send
+          </button>
+        </mat-card-content>
+      </form>
+    </mat-card>
+  </div>
+</div>

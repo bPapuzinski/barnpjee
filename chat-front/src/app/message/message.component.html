@@ -1,0 +1,12 @@
+
+<div *ngFor="let message of messages | keyvalue">
+  <label class="time">
+    {{message?.key | date:'H:mm'}}
+  </label>
+  <label class="client">
+    {{message?.value?.fromClientName}}
+  </label>
+  <label class="message">
+    {{message?.value?.message}}
+  </label>
+</div>
